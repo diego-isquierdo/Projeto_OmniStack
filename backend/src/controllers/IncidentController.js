@@ -14,11 +14,21 @@ module.exports = {
         console.log(count);
 
         const incidents = await connection('incidents')
+            //add na solicitação os dados da ong relacionada com o id do incident
+            .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
             //limitando a busca em 5 registros
             .limit(5)
             //calculando alternar 5 em 5 registros
             .offset((page-1) *5)
-            .select('*');
+            //confeccionando um array com as solicitações
+            .select([
+                'incidents.*', 
+                'ongs.name', 
+                'ongs.email', 
+                'ongs.whatsapp', 
+                'ongs.city', 
+                'ongs.uf'
+            ]);
 
         //add o numerod de registros ao cabeçalho da resposta
         response.header('X-total-Count', count['count(*)']);
