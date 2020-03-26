@@ -3,7 +3,25 @@ const connection = require('../database/connection');
 module.exports = {
 
     async index(request, response){
-        const incidents = await connection('incidents').select('*');
+
+        //trabalhando paginação - mastrar os resutados em grupos
+        //request.query - receber os parâmetros vindos via url - '?name=nome&value=valor
+        const {page = 1} = request.query;
+        //por default exibe a pag 1
+
+        //contando o número de registros
+        const [count] = await connection('incidents').count();
+        console.log(count);
+
+        const incidents = await connection('incidents')
+            //limitando a busca em 5 registros
+            .limit(5)
+            //calculando alternar 5 em 5 registros
+            .offset((page-1) *5)
+            .select('*');
+
+        //add o numerod de registros ao cabeçalho da resposta
+        response.header('X-total-Count', count['count(*)']);
 
         return response.json(incidents);
     },
