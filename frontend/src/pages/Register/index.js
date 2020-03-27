@@ -22,7 +22,7 @@ export default function Register() {
 
                 <form>
                     <input placeholder="Nome da ONG"/>
-                    <input type="email" name="" id=""/>
+                    <input type="email" placeholder="E-mail"/>
                     <input placeholder="WhatsApp"/>
 
                     <div className="input-group">
