@@ -1,26 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
 
-function App() {
+import './global.css';
+
+//importando a todo o diretório 'logon' - React sempre procura pelo index
+//import Logon from './pages/logon'; >> importado via 'Routes
+
+import Routes from './routes';
+
+
+
+function App(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello World!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes/>
   );
 }
 
+
 export default App;
+
+/*
+TESTES COM MANIPULAÇÃO DO ESTADO DOS ELEMENTOS
+
+//Havendo mais de uma informação, os elementos devem ser encapsulados - uma <div> p exemplo
+function App(){
+
+  //setState retorna um Array de 2 posições > [valor, Function()] > a Fonction 
+  //retornada serve para altera o valor
+  const [counter, setCounter] = useState(0); //paenas inicilaizando com '0'
+  
+  function increment(){
+    setCounter(counter +1);
+  }
+
+  return(
+    <di>
+      <Header>Contador: {counter}</Header>
+      <button onClick={increment}>Incrementar</button>
+    </di>
+  );
+}
+*/
+
+//JSX > Js + XML
+/*
+function App() {
+  return (
+    //utilizando o conteudo importado do arquivo Header.js
+    //Enviando title como parâmettro para a função Header como atributo
+    //<Header title="Semana Omnistack"/>
+    
+    //passando o prâmetro com filho 
+    <Header>
+      Semana Omnistack - Child
+    </Header>
+  );
+}
+*/
+
+//export default App;
