@@ -1,10 +1,12 @@
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
+
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+
+import Routes from './src/route';
 
 export default function App() {
   return (
-    <View>
-      <Text>Hello World!!</Text>
-    </View>
+    <Routes />
   );
 }
